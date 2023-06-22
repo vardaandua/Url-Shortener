@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="heading" style="color:rgb(254, 254, 254)"> URL Shortener</h1>
+        <form action="/shortUrls" method="POST" class="my-4 form-inline">
+            <label for="fullUrl" class="sr-only">Url</label>
+            <input required placeholder="Url" type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
+            <button class="btn btn-success" type="submit">Shorten</button>
+        </form>
+
+        <table class="center-table">
+            <thead>
+                <tr id="Tab">
+                    <th>Full URL</th>
+                    <th>Short URL</th>
+                    <th>Clicks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% shortUrls.forEach(shortUrl => { %>
+                    <tr>
+                        <td>
+                            <a href="<%= shortUrl.full %>">
+                                <%= shortUrl.full %>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="<%= shortUrl.short %>">
+                                <%= shortUrl.short %>
+                            </a>
+                        </td>
+                        <td id="jp">
+                            <%= shortUrl.clicks %>
+                        </td>
+                    </tr>
+                    <% }) %>
+
+            </tbody>
+
+        </table>
+    </div>
+</body>
+<style>
+    .btn {
+        color: white;
+        background-color: black;
+    }
+    
+    body {
+        font-family: "Times New Roman";
+        font-weight: 800;
+        background-color: black;
+    }
+    
+    #heading {
+        font-weight: 800;
+        font-size: 4.5em;
+        text-align: center;
+    }
+    
+    #Tab {
+        color: white;
+    }
+    
+    #jp {
+        color: white;
+    }
+    
+    .center-table {
+        margin-left: auto;
+        margin-right: auto;
+        border-collapse: collapse;
+        border: 2px solid white;
+        font-size: larger;
+        width: 100%
+        /* Add border to the table */
+    }
+    
+    .center-table th,
+    .center-table td {
+        border: 2px solid white;
+        /* Add border to table cells */
+        padding: 20px;
+        /* Optional: Add padding to cells for spacing */
+    }
+</style>
+
+</html>
